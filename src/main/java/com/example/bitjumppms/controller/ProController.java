@@ -19,7 +19,6 @@ public class ProController {
     @RequestMapping(path = "/{userid}",method = RequestMethod.GET)
     public BaseResponse getUser(@PathVariable int userid){
         MyUser myUser = MyUser.test1();
-        myUser.setUserId(userid);
         return BaseResponse.success(myUser);
     }
 
