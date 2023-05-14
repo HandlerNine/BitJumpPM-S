@@ -1,5 +1,7 @@
 package com.example.bitjumppms.controller;
 
+import com.example.bitjumppms.domain.BaseResponse;
+import com.example.bitjumppms.domain.MyUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
