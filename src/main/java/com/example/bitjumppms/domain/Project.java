@@ -1,12 +1,10 @@
 package com.example.bitjumppms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.ArrayList;
 
-@Getter
-@Setter
+@Data
 public class Project {
     private int proId;//项目id
     private String proName;//项目名字
