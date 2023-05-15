@@ -1,28 +1,26 @@
 package com.example.bitjumppms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Setter
-@Getter
-public class BaseResponse<T> {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class BaseResponse {
     private int code;
     private String message;
-    private T data;
+    private Object data;
 
-    public static <T> BaseResponse success(){
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.code = 200;
-        baseResponse.message = "success";
-        baseResponse.data = null;
-        return baseResponse;
+    public static BaseResponse success(){
+        return new BaseResponse(ErrorCode.SUCCESS,"success",null);
     }
 
-    public static <T> BaseResponse success(T data){
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.code = 200;
-        baseResponse.message = "success";
-        baseResponse.data = data;
-        return baseResponse;
+    public static BaseResponse success(Object data){
+        return new BaseResponse(ErrorCode.SUCCESS,"success",data);
+    }
+
+    public static BaseResponse error(int code, String msg){
+        return new BaseResponse(code,msg,null);
     }
 }

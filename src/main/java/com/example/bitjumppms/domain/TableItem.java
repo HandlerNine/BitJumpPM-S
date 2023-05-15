@@ -1,10 +1,7 @@
 package com.example.bitjumppms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
+import lombok.Data;
+@Data
 public class TableItem {
     private int tableItemId;//表项id
     private String beginTime;//开始时间

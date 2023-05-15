@@ -1,12 +1,9 @@
 package com.example.bitjumppms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import java.io.IOException;
 
-@Getter
-@Setter
+@Data
 public class MyUser {
     /**
      * 地址
