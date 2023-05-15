@@ -6,15 +6,15 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class ServiceException extends RuntimeException{
 
-    private String code;
+    private int code;
     private HttpStatus httpStatus = HttpStatus.BAD_REQUEST;//默认是400
 
-    public ServiceException(String code, String msg){
+    public ServiceException(int code, String msg){
         super(msg);
         this.code = code;
     }
 
-    public ServiceException(String code, String msg, HttpStatus httpStatus){
+    public ServiceException(int code, String msg, HttpStatus httpStatus){
         super(msg);
         this.code = code;
         this.httpStatus = httpStatus;

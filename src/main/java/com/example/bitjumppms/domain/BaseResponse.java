@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseResponse {
-    private String code;
+    private int code;
     private String message;
     private Object data;
 
@@ -20,7 +20,7 @@ public class BaseResponse {
         return new BaseResponse(ErrorCode.SUCCESS,"success",data);
     }
 
-    public static BaseResponse error(String code, String msg){
+    public static BaseResponse error(int code, String msg){
         return new BaseResponse(code,msg,null);
     }
 }
