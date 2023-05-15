@@ -11,4 +11,6 @@ public interface ErrorCode {
     int INVALID_TOKENUSER = 40303;//token用户名错误
 
     int INVLAID_SIGNATURE = 40304;//token签名错误
+
+    int MISS_TOKEN = 40305;//没有token
 }

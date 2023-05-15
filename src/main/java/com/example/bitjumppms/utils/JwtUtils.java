@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.http.HttpStatus;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +20,17 @@ public class JwtUtils {
      */
     public String createToken(Map<String, Object> claims, String subject) {
         long now = System.currentTimeMillis();
-        long expirationTime = now + 1000 * 60 * 60;
+//        long expirationTime = now + 10000 * 60 * 60;
+
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.DATE, 7); //默认7天过期
+
         return Jwts.builder()
                 .setClaims(claims)//载荷
                 .setSubject(subject)//用户名
                 .setIssuedAt(new Date(now))//当前时间
-                .setExpiration(new Date(expirationTime))//过期时间
+//                .setExpiration(new Date(expirationTime))//过期时间
+                .setExpiration(instance.getTime())//过期时间
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)//签名
                 .compact();
     }

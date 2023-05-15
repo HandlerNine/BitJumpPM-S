@@ -25,5 +25,12 @@ public class    Project {
         return project;
     }
 
+    public static Project test2(){
+        Project project = new Project();
+        project.projectId = 2;
+        project.projectName = "pro1";
+        return project;
+    }
+
 
 }

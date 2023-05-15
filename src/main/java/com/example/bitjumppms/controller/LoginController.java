@@ -23,7 +23,7 @@ public class LoginController {
                                  @RequestBody HashMap<String, String> map){
         //处理
         log.info("userid = {}, password = {}, email = {} ",userid,password,map.get("email"));
-        if(false)
+        if(true)
             return BaseResponse.success();
         else{
             //失败（默认httpState为400）
@@ -34,22 +34,18 @@ public class LoginController {
     @PostMapping("/login/{userid}/{password}")
     //登录
     public BaseResponse login(@PathVariable String userid, @PathVariable String password){
+
+        //记得写个解密的方法
+
         log.info("userid = {}, password = {}",userid,password);
         Map<String, Object> payload = new HashMap<>();
         payload.put("name","hhh");
-        String token = new JwtUtils().createToken(payload,userid);
+        String token = new JwtUtils().createToken(payload,userid); //userid放进subject里，其余的消息放payload里
         if(true)
             return BaseResponse.success(token);
         else{
             throw new ServiceException(ErrorCode.INVALID_USERNAME,"用户不存在");
         }
-    }
-
-    @PostMapping("/logout/{userid}")
-    //登出
-    public BaseResponse logout(@PathVariable String userid){
-        log.info("userid = {}",userid);
-        return BaseResponse.success();
     }
 
 }
