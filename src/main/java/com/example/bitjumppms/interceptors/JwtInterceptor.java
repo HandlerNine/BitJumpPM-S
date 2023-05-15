@@ -23,13 +23,15 @@ public class JwtInterceptor implements HandlerInterceptor {
         String token = request.getHeader("token");
         JwtUtils jwtUtils = new JwtUtils();
         try{
-            return jwtUtils.isTokenExpired(token);//用这一个就能全部过一遍
+            return !jwtUtils.isTokenExpired(token);//用这一个就能全部过一遍
         }catch (ExpiredJwtException e){
             throw new ServiceException(ErrorCode.EXPIRED_TOKEN,"token过期", HttpStatus.FORBIDDEN);
         }catch (MalformedJwtException e){
             throw new ServiceException(ErrorCode.INVALID_TOKEN,"token错误",HttpStatus.FORBIDDEN);
         }catch (SignatureException e){
             throw new ServiceException(ErrorCode.INVLAID_SIGNATURE,"token签名错误",HttpStatus.FORBIDDEN);
+        }catch (IllegalArgumentException e){
+            throw new ServiceException(ErrorCode.MISS_TOKEN,"没有token",HttpStatus.FORBIDDEN);
         }
     }
 }
