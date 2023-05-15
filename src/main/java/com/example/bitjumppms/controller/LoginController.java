@@ -5,6 +5,8 @@ import com.example.bitjumppms.domain.ErrorCode;
 import com.example.bitjumppms.exception.GlobalExceptionHandler;
 import com.example.bitjumppms.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -27,12 +29,9 @@ public class LoginController {
 
     @RequestMapping("/login/{userid}/{password}")
     //登录
-    public BaseResponse login(@PathVariable String userid, @PathVariable String password){
+    public ResponseEntity<BaseResponse> login(@PathVariable String userid, @PathVariable String password){
         log.info("userid = {}, password = {}",userid,password);
-        if(false)
-            return BaseResponse.success();
-        else{
-            throw new ServiceException(ErrorCode.DUPLICATE_USERNAME,"密码错误");
-        }
+        return new ResponseEntity<BaseResponse>(BaseResponse.success(), HttpStatus.PARTIAL_CONTENT);
+        //            return BaseResponse.success();
     }
 }
