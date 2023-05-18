@@ -1,18 +1,11 @@
 package com.example.bitjumppms.controller;
 
 import com.example.bitjumppms.domain.*;
-import com.example.bitjumppms.exception.ServiceException;
-import com.example.bitjumppms.utils.JwtUtils;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -29,6 +22,14 @@ public class ProController {
         projects.add(Project.test1());
         projects.add(Project.test2());
         return BaseResponse.success(projects);
+    }
+
+    @GetMapping("{proid}/user")
+    public BaseResponse getProUser(@PathVariable int proid){
+        ArrayList<MyUser> users = new ArrayList<>();
+        users.add(MyUser.test1());
+        users.add(MyUser.test2());
+        return BaseResponse.success(users);
     }
 
     /**
@@ -124,6 +125,10 @@ public class ProController {
         return BaseResponse.success();
     }
 
+    @PostMapping("{proid}/change")
+    public BaseResponse changeUser(@PathVariable int proid){
+        return BaseResponse.success();
+    }
 
 }
 

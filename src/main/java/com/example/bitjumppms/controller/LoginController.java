@@ -31,7 +31,7 @@ public class LoginController {
         }
     }
 
-    @PostMapping("/login/{userid}/{password}")
+    @GetMapping("/login/{userid}/{password}")
     //登录
     public BaseResponse login(@PathVariable String userid, @PathVariable String password){
 
