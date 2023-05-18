@@ -31,6 +31,14 @@ public class ProController {
         return BaseResponse.success(projects);
     }
 
+    @GetMapping("{proid}/user")
+    public BaseResponse getProUser(@PathVariable int proid){
+        ArrayList<MyUser> users = new ArrayList<>();
+        users.add(MyUser.test1());
+        users.add(MyUser.test2());
+        return BaseResponse.success(users);
+    }
+
     /**
      * 项目增删
     */
@@ -124,6 +132,10 @@ public class ProController {
         return BaseResponse.success();
     }
 
+    @PostMapping("{proid}/change")
+    public BaseResponse changeUser(@PathVariable int proid){
+        return BaseResponse.success();
+    }
 
 }
 

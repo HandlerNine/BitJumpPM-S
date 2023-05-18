@@ -15,6 +15,7 @@ public class    Project {
     private int budget;//预算
     private String leaderId;//负责人id
     private String leaderName;//负责人名字
+    //赖得手写结构了，如果这样一整个传不行的话就用再写一个结构或者HashMap吧
     private ArrayList<MyUser> members;//成员
     private ArrayList<TableItem> table;//表项
 

@@ -2,10 +2,13 @@ package com.example.bitjumppms.controller;
 
 import com.example.bitjumppms.domain.BaseResponse;
 import com.example.bitjumppms.domain.MyUser;
+import com.example.bitjumppms.domain.TableItem;
 import com.example.bitjumppms.utils.JwtUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @Slf4j
@@ -43,9 +46,12 @@ public class MeController {
         return BaseResponse.success();
     }
 
-    //api没写，记得写！！！！
+    //获取日程信息
     @GetMapping("/schedule")
     public BaseResponse getSchedule(){
-        return BaseResponse.success();
+        ArrayList<TableItem> tableItems = new ArrayList<>();
+        tableItems.add(TableItem.test1());
+        tableItems.add(TableItem.test2());
+        return BaseResponse.success(tableItems);
     }
 }
