@@ -5,6 +5,7 @@ import com.example.bitjumppms.domain.ErrorCode;
 import com.example.bitjumppms.exception.GlobalExceptionHandler;
 import com.example.bitjumppms.exception.ServiceException;
 import com.example.bitjumppms.utils.JwtUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/login/{userid}/{password}")
+    @PostMapping("/login/{userid}/{password}")
     //登录
     public BaseResponse login(@PathVariable String userid, @PathVariable String password){
 
@@ -46,6 +47,23 @@ public class LoginController {
         else{
             throw new ServiceException(ErrorCode.INVALID_USERNAME,"用户不存在");
         }
+    }
+
+    @PostMapping("/logout")
+    //退出登录
+    public BaseResponse postLogout(){
+        return BaseResponse.success();
+    }
+
+    @PutMapping("/password/{oldpassword}/{newpassword}")
+    //修改密码
+    public BaseResponse putPassword(@PathVariable String oldpassword,
+                                    @PathVariable String newpassword,
+                                    HttpServletRequest request){
+        //获取token（我猜要）
+        String userId = JwtUtils.getIdFromRequest(request);
+
+        return BaseResponse.success();
     }
 
 }
