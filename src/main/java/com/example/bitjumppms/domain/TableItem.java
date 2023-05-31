@@ -3,7 +3,7 @@ package com.example.bitjumppms.domain;
 import lombok.Data;
 @Data
 public class TableItem {
-    private int tableItemId;//表项id
+    private Integer tableItemId;//表项id
     private String beginTime;//开始时间
     private String endTime;//结束时间
     private String ownerId;//负责人id

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 @Data
 public class    Project {
-    private int projectId;//项目id
+    private Integer projectId;//项目id
     private String projectName;//项目名字
-    private String projectUrl;//图标
-    private int process;//进程
+    private String projectPhoto;//图标
+    private Integer process;//进程
     private String department;//部门
     private String introduction;//介绍
-    private int budget;//预算
+    private Integer budget;//预算
     private String leaderId;//负责人id
     private String leaderName;//负责人名字
     //赖得手写结构了，如果这样一整个传不行的话就用再写一个结构或者HashMap吧

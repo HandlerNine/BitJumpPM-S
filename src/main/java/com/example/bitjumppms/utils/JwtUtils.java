@@ -5,6 +5,7 @@ import com.example.bitjumppms.exception.ServiceException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 
 import java.util.Calendar;
@@ -34,7 +35,6 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)//签名
                 .compact();
     }
-
     /**
      * 获取
      */
@@ -48,6 +48,11 @@ public class JwtUtils {
     public static String extractUserid(String token){ //获取用户名
         Claims claims = extractAllClaims(token);
         return claims.getSubject();
+    }
+
+    public static String getIdFromRequest(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return extractUserid(token);
     }
     /**
      * 验证token

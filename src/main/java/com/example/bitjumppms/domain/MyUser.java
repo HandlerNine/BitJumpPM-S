@@ -30,7 +30,7 @@ public class MyUser {
      */
     private long[] createdProId;
     /**
-     * 部门
+     * 部门（记得改枚举）
      */
     private String department;
     /**
@@ -38,11 +38,11 @@ public class MyUser {
      */
     private String education;
     /**
-     * 邮箱
+     * 邮箱(暂时qq)
      */
     private String email;
     /**
-     * 入职时间
+     * 入职时间（记得设置时间格式)
      */
     private String entryTime;
     /**
@@ -86,15 +86,15 @@ public class MyUser {
      */
     private String phoneNumber;
     /**
-     * 照片url
+     * 完整的照片
      */
-    private String photoUrl;
+    private String photo;
     /**
      * 政治面貌
      */
     private String politicalStatus;
     /**
-     * 岗位
+     * 岗位（记得改枚举）
      */
     private String post;
     /**
@@ -106,7 +106,7 @@ public class MyUser {
      */
     private long priv;
     /**
-     * 项目组
+     * 项目组（记得改枚举）
      */
     private String projectTeam;
     /**
