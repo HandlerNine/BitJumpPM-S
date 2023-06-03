@@ -19,6 +19,7 @@ import java.util.List;
 
 public class DBController {
     SqlSessionFactory sqlSessionFactory;
+
     public DBController() throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -52,7 +53,7 @@ public class DBController {
     }
 
     // select single group's info
-    public Project SelectProjectInfo(int projectID){
+    public Project SelectProjectInfoByID(int projectID){
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         ProjectsMapper projectsMapper = sqlSession.getMapper(ProjectsMapper.class);
@@ -64,9 +65,8 @@ public class DBController {
         return projectInfo;
     }
 
-
     // select group projects' info
-    public List<Project> SelectProjectsInfo(int type,String UserID) {
+    public List<Project> SelectProjectsInfoByUserID(int type,String UserID) {
         List<Integer> projectsID=null;
         List<Project> projectsInfo = new ArrayList<Project>();
 
@@ -96,7 +96,7 @@ public class DBController {
 
         // select information about projects
         for(var projectID : projectsID) {
-            Project projectInfo = SelectProjectInfo(projectID);
+            Project projectInfo = SelectProjectInfoByID(projectID);
 
             String MasterName = SelectUserNameByID(projectInfo.getMasterID());
 
@@ -111,12 +111,12 @@ public class DBController {
     }
 
     // select project's members' info
-    public List<User> SelectProjectMemberInfo(int projectID){
+    public List<User> SelectProjectMemberInfoByProjectID(int projectID){
         SqlSession sqlSession = this.sqlSessionFactory.openSession();
 
         CrewsMapper crewsMapper = sqlSession.getMapper(CrewsMapper.class);
 
-        List<String> membersID = crewsMapper.selectProjectMemberID(projectID);
+        List<String> membersID = crewsMapper.selectMemberIDByProject(projectID);
 
         List<User> membersInfo = new ArrayList<User>();
         for(String memberID:membersID){
@@ -142,9 +142,8 @@ public class DBController {
         return taskInfo;
     }
 
-
     // select project's tasks' info
-    public List<Task> SelectProjectTasksInfo(int projectID){
+    public List<Task> SelectTasksInfoByProjectID(int projectID){
         SqlSession sqlSession = this.sqlSessionFactory.openSession();
 
         TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
@@ -157,7 +156,7 @@ public class DBController {
     }
 
     // select user's tasks' info
-    public List<Task> SelectUserTasksInfo(String UserID){
+    public List<Task> SelectTasksInfoByUserID(String UserID){
         SqlSession sqlSession = this.sqlSessionFactory.openSession();
 
         TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
@@ -167,5 +166,181 @@ public class DBController {
         sqlSession.close();
 
         return tasksInfo;
+    }
+
+    public String InsertUser(String UserID,String Password,String Email){
+        User user=new User();
+        user.setUserID(UserID);
+        user.setPassword(Password);
+        user.setEmail(Email);
+
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
+
+        String ID = usersMapper.insert(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return ID;
+    }
+
+    public int UpdateUserPassword(String UserID,String Password){
+        User user=new User();
+        user.setUserID(UserID);
+        user.setPassword(Password);
+
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
+
+        int status = usersMapper.update(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return status;
+    }
+
+    public int UpdateUserInfo(User user){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
+
+        int status = usersMapper.update(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return status;
+    }
+
+    public Integer InsertProject(Project project){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        ProjectsMapper projectsMapper = sqlSession.getMapper(ProjectsMapper.class);
+
+        Integer ProjectID = projectsMapper.insert(project);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return ProjectID;
+    }
+
+    public void DeleteProjectByID(Integer ProjectID){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        ProjectsMapper projectsMapper = sqlSession.getMapper(ProjectsMapper.class);
+
+        projectsMapper.deleteByID(ProjectID);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return;
+    }
+
+    public int UpdateProjectInfo(Project project){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        ProjectsMapper projectsMapper = sqlSession.getMapper(ProjectsMapper.class);
+
+        int status = projectsMapper.update(project);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return status;
+    }
+
+    public Integer InsertTask(Task task){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
+
+        Integer TaskID = tasksMapper.insert(task);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return TaskID;
+    }
+
+    public int UpdateTaskInfo(Task task){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
+
+        Integer TaskID = tasksMapper.update(task);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return TaskID;
+    }
+
+    public int CommitTask(Task task){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
+
+        Integer TaskID = tasksMapper.update(task);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return TaskID;
+    }
+
+    public int CheckTask(Task task){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        TasksMapper tasksMapper = sqlSession.getMapper(TasksMapper.class);
+
+        Integer TaskID = tasksMapper.update(task);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return TaskID;
+    }
+
+    public void InsertCrew(Integer ProjectID,String UserID){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        CrewsMapper crewsMapper = sqlSession.getMapper(CrewsMapper.class);
+
+        crewsMapper.insert(ProjectID,UserID);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return;
+    }
+    public void DeleteCrew(Integer ProjectID,String UserID){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        CrewsMapper crewsMapper = sqlSession.getMapper(CrewsMapper.class);
+
+        crewsMapper.delete(ProjectID,UserID);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return;
+    }
+    public void UpdateCrewPriv(Integer ProjectID,String UserID,boolean IsManager){
+        SqlSession sqlSession = this.sqlSessionFactory.openSession();
+
+        CrewsMapper crewsMapper = sqlSession.getMapper(CrewsMapper.class);
+
+        crewsMapper.update(ProjectID,UserID,IsManager?1:0);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return;
     }
 }

@@ -1,6 +1,6 @@
- package com.chenxf.DB.POJO.User;
+ package com.chenxf.DB.POJO;
 
-public class FullInfo {
+public class User {
     private String UserID;
     private String Password;
     private String Email;
@@ -30,10 +30,10 @@ public class FullInfo {
     private String PhotoUrl;
     private String Seniority;
 
-    public FullInfo(){
+    public User(){
     }
 
-    public FullInfo(String userID, String password, String email, String name, String gender, String phoneNumber, String entryTime, String department, Integer priv, String education, String censusRegister, String nationality, String marriage, String birthDate, String age, String bloodType, String politicalStatus, String QQNumber, String wechatNumber, String post, String address, String school, String major, String previousCompany, String jobTitle, String limitation, String photoUrl, String seniority) {
+    public User(String userID, String password, String email, String name, String gender, String phoneNumber, String entryTime, String department, Integer priv, String education, String censusRegister, String nationality, String marriage, String birthDate, String age, String bloodType, String politicalStatus, String QQNumber, String wechatNumber, String post, String address, String school, String major, String previousCompany, String jobTitle, String limitation, String photoUrl, String seniority) {
         this.UserID = userID;
         this.Password = password;
         this.Email = email;
@@ -290,7 +290,7 @@ public class FullInfo {
 
     @Override
     public String toString() {
-        return "FullInfo{" +
+        return "UserInfo{" +
                 "UserID='" + UserID + '\'' +
                 ", Password='" + Password + '\'' +
                 ", Email='" + Email + '\'' +

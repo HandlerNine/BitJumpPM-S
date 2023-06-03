@@ -2,9 +2,64 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
 
-    <select id="selectBlog" resultType="Blog">
-        select * from Blog where id = #{id}
+<mapper namespace="com.chenxf.DB.Mapper.TasksMapper">
+
+    <select id="selectInfoByID" resultType="com.chenxf.DB.POJO.Task">
+        SELECT * FROM Tasks
+        <where>
+            TaskID = #{TaskID}
+        </where>
     </select>
+
+    <select id="selectInfoByProjectID" resultType="com.chenxf.DB.POJO.Task">
+        SELECT * FROM Tasks
+        <where>
+            ProjectID = #{ProjectID}
+        </where>
+    </select>
+
+    <select id="selectInfoByUserID" resultType="com.chenxf.DB.POJO.Task">
+        SELECT * FROM Tasks
+        <where>
+            LeaderID = #{LeaderID}
+        </where>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="TaskID">
+        INSERT INTO Tasks (ProjectID, Name, StartTime, DueTime, EndTime, LeaderID, IsFinished, IsChecked)
+        VALUES (#{ProjectID},#{Name},#{StartTime},#{DueTime},#{EndTime},#{LeaderID},0,0)
+    </insert>
+
+    <update id="update">
+        UPDATE Tasks
+        <set>
+            <if test="Name !=null and Name !=''">
+                Name= #{Name}
+            </if>
+            <if test="StartTime !=null and StartTime !=''">
+                StartTime= #{StartTime}
+            </if>
+            <if test="DueTime !=null and DueTime !=''">
+                DueTime= #{DueTime}
+            </if>
+            <if test="EndTime !=null and EndTime !=''">
+                EndTime= #{EndTime}
+            </if>
+            <if test="LeaderID !=null and LeaderID !=''">
+                LeaderID= #{LeaderID}
+            </if>
+            <if test="IsFinished !=null and IsFinished !=''">
+                IsFinished= #{IsFinished}
+            </if>
+            <if test="IsChecked !=null and IsChecked !=''">
+                IsChecked= #{IsChecked}
+            </if>
+            <if test="Remark !=null and Remark !=''">
+                Remark= #{Remark}
+            </if>
+        </set>
+        WHERE TaskID = #{TaskID}
+    </update>
+
 </mapper>

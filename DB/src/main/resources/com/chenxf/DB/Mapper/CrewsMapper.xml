@@ -2,9 +2,43 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
 
-    <select id="selectBlog" resultType="Blog">
-        select * from Blog where id = #{id}
+<mapper namespace="com.chenxf.DB.Mapper.CrewsMapper">
+
+    <select id="selectProjectIDByManager" resultType="java.lang.Integer">
+        SELECT ProjectID FROM Crews
+        <where>
+            UserID = #{UserID} AND IsManager = 1
+        </where>
     </select>
+
+    <select id="selectProjectIDByMember" resultType="java.lang.Integer">
+        SELECT ProjectID FROM Crews
+        <where>
+            UserID = #{UserID} AND IsManager = 0
+        </where>
+    </select>
+
+    <select id="selectMemberIDByProject" resultType="java.lang.String">
+        SELECT UserID FROM Crews
+        <where>
+            ProjectID = #{ProjectID}
+        </where>
+    </select>
+
+
+    <insert id="insert">
+        INSERT INTO Crews (ProjectID, UserID) VALUES (#{ProjectID},#{UserID});
+    </insert>
+
+    <update id="update">
+        UPDATE Crews set IsManager = #{IsManager}
+        WHERE ProjectID = #{ProjectID} AND UserID = #{UserID};
+    </update>
+
+    <delete id="delete">
+        DELETE from Crews where ProjectID = #{ProjectID} AND UserID = #{UserID} ;
+    </delete>
+
+
 </mapper>
