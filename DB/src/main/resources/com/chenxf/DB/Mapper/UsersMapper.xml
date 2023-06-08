@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenxf.DB.Mapper.UsersMapper">
+
+
+    <!--    <resultMap id="LearningResultMap" type="com.chenxf.DB.POJO.User.FullInfo">-->
+<!-- result type of tag used for common property but 'id' type for key -->
+<!--        <result column="UserID" property="Giao"/>-->
+<!--    </resultMap>-->
+
+<!--    <!CDATA[[]]]>-->
+
+    <select id="selectAll" resultType="com.chenxf.DB.POJO.User">
+        SELECT * FROM Users
+    </select>
+
+    <select id="selectByID" resultType="com.chenxf.DB.POJO.User">
+        SELECT * FROM Users
+        <where>
+            UserID = #{UserID}
+        </where>
+    </select>
+
+    <select id="selectNameByID" resultType="java.lang.String">
+        SELECT Name FROM Users
+        <where>
+            UserID = #{UserID}
+        </where>
+    </select>
+
+    <select id="selectPasswordByID" resultType="java.lang.String">
+        SELECT Password FROM Users
+        <where>
+            UserID = #{UserID}
+        </where>
+    </select>
+
+    <!--        select * from Blog where id = #{id}-->
+
+<!--    <select id="selectPassword" resultType="String">-->
+<!--        select -->
+<!--    </select>-->
+
+    <insert id="insert" keyProperty="UserID">
+        INSERT into Users (UserID, Password, Email)
+        values (#{UserID},#{Password},#{Email});
+    </insert>
+
+    <update id="update">
+        UPDATE Users
+        <set>
+            <if test="UserID !=null and UserID !=''">
+                UserID= #{UserID}
+            </if>
+            <if test="Password !=null and Password !=''">
+                Password= #{Password}
+            </if>
+            <if test="Email !=null and Email !=''">
+                Email= #{Email}
+            </if>
+            <if test="Name !=null and Name !=''">
+                Name= #{Name}
+            </if>
+            <if test="Gender !=null and Gender !=''">
+                Gender= #{Gender}
+            </if>
+            <if test="PhoneNumber !=null and PhoneNumber !=''">
+                PhoneNumber= #{PhoneNumber}
+            </if>
+            <if test="EntryTime !=null and EntryTime !=''">
+                EntryTime= #{EntryTime}
+            </if>
+            <if test="Department !=null and Department !=''">
+                Department= #{Department}
+            </if>
+            <if test="Priv != 0">
+                Priv= #{Priv}
+            </if>
+            <if test="Education !=null and Education !=''">
+                Education= #{Education}
+            </if>
+            <if test="CensusRegister !=null and CensusRegister !=''">
+                CensusRegister= #{CensusRegister}
+            </if>
+            <if test="Nationality !=null and Nationality !=''">
+                Nationality= #{Nationality}
+            </if>
+            <if test="Marriage !=null and Marriage !=''">
+                Marriage= #{Marriage}
+            </if>
+            <if test="BirthDate !=null and BirthDate !=''">
+                BirthDate= #{BirthDate}
+            </if>
+            <if test="Age !=null and Age !=''">
+                Age= #{Age}
+            </if>
+            <if test="BloodType !=null and BloodType !=''">
+                BloodType= #{BloodType}
+            </if>
+            <if test="PoliticalStatus !=null and PoliticalStatus !=''">
+                PoliticalStatus= #{PoliticalStatus}
+            </if>
+            <if test="QQNumber !=null and QQNumber !=''">
+                QQNumber= #{QQNumber}
+            </if>
+            <if test="WechatNumber !=null and WechatNumber !=''">
+                WechatNumber= #{WechatNumber}
+            </if>
+            <if test="Post !=null and Post !=''">
+                Post= #{Post}
+            </if>
+            <if test="Address !=null and Address !=''">
+                Address= #{Address}
+            </if>
+            <if test="School !=null and School !=''">
+                School= #{School}
+            </if>
+            <if test="Major !=null and Major !=''">
+                Major= #{Major}
+            </if>
+            <if test="PreviousCompany !=null and PreviousCompany !=''">
+                PreviousCompany= #{PreviousCompany}
+            </if>
+            <if test="JobTitle !=null and JobTitle !=''">
+                JobTitle= #{JobTitle}
+            </if>
+            <if test="Limitation !=null and Limitation !=''">
+                Limitation= #{Limitation}
+            </if>
+            <if test="PhotoUrl !=null and PhotoUrl !=''">
+                PhotoUrl= #{PhotoUrl}
+            </if>
+            <if test="Seniority !=null and Seniority !=''">
+                Seniority= #{Seniority}
+            </if>
+        </set>
+        WHERE UserID = #{UserID};
+    </update>
+
+</mapper>
