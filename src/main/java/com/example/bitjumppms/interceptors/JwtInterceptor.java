@@ -10,9 +10,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
+@CrossOrigin(origins = "http://localhost:5173",maxAge = 3600)
 public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -21,6 +23,18 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         //获取请求头中的令牌
         String token = request.getHeader("token");
+        if(token == null)
+            log.info("hhh");
+        else
+            log.info("{}",token);
+
+//        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+//        response.setHeader("Access-Control-Allow-Methods", "*");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Allow-Headers", "origin,x-requested-with,content-type,X-Custom-Header, Upgrade-Insecure-Requests,token");
+//        System.err.println("------------------>:已完成跨域处理");
+//        return true;
+
         JwtUtils jwtUtils = new JwtUtils();
         try{
             return !jwtUtils.isTokenExpired(token);//用这一个就能全部过一遍

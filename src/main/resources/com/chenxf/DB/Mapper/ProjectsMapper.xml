@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.chenxf.DB.Mapper.ProjectsMapper">
+
+    <select id="selectByID" resultType="com.chenxf.DB.POJO.Project">
+        SELECT * FROM Projects
+        <where>
+            ProjectID = #{ProjectID}
+        </where>
+    </select>
+
+    <select id="selectIDByMaster" resultType="java.lang.Integer">
+        SELECT ProjectID FROM Projects
+        <where>
+            MasterID = #{MasterID}
+        </where>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="ProjectID">
+        INSERT INTO Projects (Name, IconUrl, Intro, MasterID, Budget)
+        VALUES (#{Name},#{IconUrl},#{Intro},#{MasterID},#{Budget});
+    </insert>
+
+    <delete id="deleteByID">
+        DELETE FROM Projects where ProjectID = #{ProjectID};
+    </delete>
+
+    <update id="update">
+        UPDATE Projects
+        <set>
+            <if test="Name != null and Name != ''">
+                Name= #{Name},
+            </if>
+            <if test="IconUrl != null and IconUrl != ''">
+                IconUrl= #{IconUrl},
+            </if>
+            <if test="Intro != null and Intro != ''">
+                Intro= #{Intro},
+            </if>
+            <if test="Budget != null and Budget != ''">
+                Budget= #{Budget},
+            </if>
+        </set>
+        WHERE ProjectID = #{ProjectID}
+    </update>
+
+</mapper>
