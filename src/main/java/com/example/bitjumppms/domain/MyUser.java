@@ -1,5 +1,6 @@
 package com.example.bitjumppms.domain;
 
+import com.chenxf.DB.POJO.User;
 import lombok.Data;
 import java.io.IOException;
 
@@ -143,6 +144,41 @@ public class MyUser {
         myUser.name = "fufeui";
         return myUser;
     }
+
+    public static User toUser(MyUser myuser){
+        User user = new  User();
+
+        user.setUserID(myuser.userId);
+        user.setEmail(myuser.email);
+        user.setName(myuser.name);
+        user.setGender(myuser.gender);
+        user.setPhoneNumber(myuser.phoneNumber);
+        user.setEntryTime(myuser.entryTime);
+        user.setDepartment(myuser.department);
+        user.setPriv((int) myuser.priv);
+        user.setEducation(myuser.education);
+        user.setCensusRegister(myuser.censusRegister);
+        user.setNationality(myuser.nationality);
+        user.setMarriage(myuser.marriage);
+        user.setBirthDate(myuser.birthDate);
+        user.setAge(String.valueOf(myuser.age));
+        user.setBloodType(myuser.bloodType);
+        user.setPoliticalStatus(myuser.politicalStatus);
+        user.setQQNumber(myuser.qqNumber);
+        user.setWechatNumber(myuser.wechatNumber);
+        user.setPost(myuser.post);
+        user.setAddress(myuser.address);
+        user.setSchool(myuser.school);
+        user.setMajor(myuser.major);
+        user.setPreviousCompany(myuser.previousCompany);
+        user.setJobTitle(myuser.jobTitle);
+        user.setLimitation(myuser.limitation);
+        user.setPhotoUrl(myuser.photo);
+        user.setSeniority(String.valueOf(myuser.seniority));
+
+        return user;
+    }
+
 
 }
 

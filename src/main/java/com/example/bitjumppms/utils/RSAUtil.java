@@ -1,6 +1,6 @@
 package com.example.bitjumppms.utils;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -77,12 +77,12 @@ public class RSAUtil {
 
 
 
-    @Test
-    public void MyTest() throws Exception {
-        String codeMsg = "M45yrK4E5Qm7LOyJ+BmfTAIlaEfddav6dnZZ63yTDoOCklkvTDupatYgdiRXvVVq97M5YpPCqd9muFXvK7vhHYlK7TkVDK7eSuhM4S3HypowoQ0TKSXIswRYwrqlUF2GuajBG49rqhTLuAB7DsZ4rhGCeRGsxhIfYjsRv5Vl06g=";
-        PrivateKey privateKey = getPrivateKeyFromPemResource("rsa_1024_priv.pem");
-        byte[] result = decrypt(Base64.getDecoder().decode(codeMsg),privateKey);
-        System.out.println(new String(result));
-    }
+//    @Test
+//    public void MyTest() throws Exception {
+//        String codeMsg = "M45yrK4E5Qm7LOyJ+BmfTAIlaEfddav6dnZZ63yTDoOCklkvTDupatYgdiRXvVVq97M5YpPCqd9muFXvK7vhHYlK7TkVDK7eSuhM4S3HypowoQ0TKSXIswRYwrqlUF2GuajBG49rqhTLuAB7DsZ4rhGCeRGsxhIfYjsRv5Vl06g=";
+//        PrivateKey privateKey = getPrivateKeyFromPemResource("rsa_1024_priv.pem");
+//        byte[] result = decrypt(Base64.getDecoder().decode(codeMsg),privateKey);
+//        System.out.println(new String(result));
+//    }
 }
 
